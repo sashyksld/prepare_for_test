@@ -19,4 +19,4 @@ like this:
 
 Look at the file Math.txt
 
-it will only read txt files!!!
+# IT WILL ONLY READ TXT FILES!!!
