@@ -1,12 +1,12 @@
 import random
 import glob
 
-words = []
-file = glob.glob("*.txt")
-text_file = open(file[0], 'r')
+words = []                              # Making a list where we will have a words
+file = glob.glob("*.txt")               # Find a txt document where we wrote all words
+text_file = open(file[0], 'r')          # Open it
 while True:
     right_text = ""
-    text = text_file.readline(1000)
+    text = text_file.readline(1000)     # read line in txt document
     if text == "":
         break
     else:
@@ -16,39 +16,39 @@ while True:
             index = len(text)
             for i in range(index - 1):
                 right_text += text[i]
-            words.append(right_text)
+            words.append(right_text)     # add a words in list
 
-
-wrong = 0
-wrong_de = []
-wrong_en = []
-my_wrong = []
+wrongs = 0                               # we will count the wrongs
+wrong_questions = []
+wrong_answers = []
+my_wrongs = []
 
 a = int(len(words) / 2 - 1)
 while True:
     while True:
         number = random.randint(0, a)
-        if number % 2 == 0:
+        if number % 2 == 0:             # we find the question line, they are odd 1,3,5
             break
-    print(words[number])
-    answer = input(":")
-    if answer == words[number + 1]:
-        print("correct\n\n\n")
-        words.remove(words[number])
-        words.remove(words[number])
+    print(words[number])                # we print the question
+    answer = input(":")                 # user must answer
+    if answer == words[number + 1] or words[number + 1].capitalize():     # if correct:
+        print("correct\n\n\n")          # write him correct
+        for i in range(2):
+            words.remove(words[number])  # remove the question and the answer, the answer comes later than the question
         a = a - 1
-        if len(words) == 0:
-            print("you win")
+        if len(words) == 0:              # if there are no more questions, the user wins and we write results
+            print("you win!!!\n\n\n")
             break
     else:
-        print("Wrong. Right:", words[number + 1], "\n\n\n")
-        wrong_en.append(words[number])
-        wrong_de.append(words[number + 1])
-        my_wrong.append(answer)
-        wrong = wrong + 1
-print("\nWrongs:", wrong, "\n")
-for i in range(wrong):
+        print("Wrong. Right:", words[number + 1], "\n\n\n")     # here we write him the correct answer for next time
+        wrong_questions.append(words[number])
+        wrong_answers.append(words[number + 1])
+        my_wrongs.append(answer)
+        wrongs = wrongs + 1     # this continues until the user answers everything correctly
+
+
+print("Wrongs:", wrongs, "\n")  # In end, we will have our false answers
+for i in range(wrongs):
     print(str(i + 1) + ".")
-    print(wrong_de[i])
-    print(wrong_en[i])
-    print("Your answer was", my_wrong[i], "\n\n")
+    print(wrong_questions[i], ":", wrong_answers[i])
+    print("Your answer was", my_wrongs[i], "\n\n")
