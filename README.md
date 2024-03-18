@@ -9,10 +9,12 @@ In the odd cells you write the question and below the answer
 like this:
 ----------------------------------------------------- ---
 1 question
-1 answer
-2 questions
-2 answer
 
+1 answer
+
+2 question
+
+2 answer
 ...
 
 Look at the file Math.txt
